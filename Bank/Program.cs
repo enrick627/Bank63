@@ -39,7 +39,16 @@
  * vraag rekeningnummer
  * Vraag houder 
  * Vraag of ze willen storten of afhalen
- * Bereken
+ * Vraag bedrag storten
+ * Vraag of ze willen afhalen
+ * Vraag of u wilt zoeken naar een rekening of niet
+ * 
+ * Bereken het stortbedrag(het saldo + storten bedrag)
+ * Bereken het afhaalbedrag(het saldo - afhaal bedrag)
+ * 
+ * TOON
+ *          alle antwoorden van de vragen
+ * 
  */
 
 using System;
@@ -60,38 +69,46 @@ namespace Bank
             client Client;
             Client = new client();
 
-            decimal Somstortbedrag = 0; string GetalStortAfhaal; decimal totsomkrediet;
-            string Openen;
-            //vraag aan gebruiker of hij een rekenining wilt openen
+            decimal Somstortbedrag = 0; 
+            string GetalStortAfhaal; 
+            decimal totsomkrediet, RekeningNummer;
+            string Openen, RekeningNummerOpzoekenVraag, Rekekeningnummerzoek;
+            //proccessing
+            //vraag aan gebruiker of hij een rekenining wilt openen of niet
             Console.WriteLine("wilt u een rekenening openen?");
             Openen = Console.ReadLine();
             if (Openen == "ja")
             {
-
-
                 //Vraag aan de gebruiker zijn gegevens
+                //Vraag de voornaam
                 Console.WriteLine("geef uw voornaam");
                 Client.Voornaam = Console.ReadLine();
+
+                //vraag de familienaam
                 Console.WriteLine("geef uw familienaam");
                 Client.Familienaam = Console.ReadLine();
+
+                //vraag het adres
                 Console.WriteLine("geef uw adres");
                 Client.Adres = Console.ReadLine();
-                //vraag saldo
-                Console.WriteLine("saldo:");
-                Rekening.saldo = decimal.Parse(Console.ReadLine());
+                
                 //vraag kredietlimiet
                 Console.WriteLine("kredietlimiet:");
-                Rekening.kredietlimiet = decimal.Parse(Console.ReadLine());
-
-                
+                Rekening.kredietlimiet = decimal.Parse(Console.ReadLine()); 
             }
             if (Openen == "nee")
             {
+                //vraag saldo
+                Console.WriteLine("saldo:");
+                Rekening.saldo = decimal.Parse(Console.ReadLine());
+
                 Console.WriteLine("U wilt geen rekening openen");
-            }
+
                 //vraag rekeningnummer
                 Console.WriteLine("rekeningnummer:");
                 Rekening.rekeningnummer = Console.ReadLine();
+                RekeningNummer = decimal.Parse(Rekening.rekeningnummer);
+                
                 //Vraag houder 
                 Console.WriteLine("houder:");
                 Rekening.houder = Console.ReadLine();
@@ -104,30 +121,40 @@ namespace Bank
                     //Vraag bedrag storten
                     Console.WriteLine("bedrag dat u wil storten?");
                     Rekening.stortBedrag = decimal.Parse(Console.ReadLine());
+
                     //Bereken het stortbedrag(het saldo + storten bedrag)
                     Somstortbedrag = Rekening.stortBedrag + Rekening.saldo;
                     Console.WriteLine($"totaal bedrag na storten {Somstortbedrag}");
-
                 }
-                if(GetalStortAfhaal == "nee")
+                if (GetalStortAfhaal == "nee")
                 {
-                     
-                     {
-                         //Vraag of ze willen afhalen
-                         Console.WriteLine("het bedrag dat u wilt afhalen?");
-                         Rekening.afhaalBedrag = decimal.Parse(Console.ReadLine());
-                         //Bereken het afhaalbedrag(het saldo - afhaal bedrag)
-                         Somstortbedrag = Rekening.saldo - Rekening.afhaalBedrag;
-                         Console.WriteLine($"totaal bedrag na afhalen {Somstortbedrag}");
-                         totsomkrediet = Rekening.kredietlimiet - Rekening.afhaalBedrag;
+
+                    {
+                        //Vraag of ze willen afhalen
+                        Console.WriteLine("het bedrag dat u wilt afhalen?");
+                        Rekening.afhaalBedrag = decimal.Parse(Console.ReadLine());
+
+                        //Bereken het afhaalbedrag(het saldo - afhaal bedrag)
+                        Somstortbedrag = Rekening.saldo - Rekening.afhaalBedrag;
+                        Console.WriteLine($"totaal bedrag na afhalen {Somstortbedrag}");
+                        totsomkrediet = Rekening.kredietlimiet - Rekening.afhaalBedrag;
                         if (totsomkrediet < Rekening.kredietlimiet)
                         {
                             Console.WriteLine("je mag dit niet je gaat onder je ingestelde limiet.");
                         }
-                     }
-                   
-                }
+                    }
 
+                }
+                //Vraag of u wilt zoeken naar een rekening of niet
+                Console.WriteLine("als u een rekening wilt zoeken type dan ja anders type je nee");
+                RekeningNummerOpzoekenVraag = Console.ReadLine();
+                if (RekeningNummerOpzoekenVraag == "ja")
+                {
+                    Console.WriteLine("wat is het rekeningnummer dat je wilt zoeken");
+                    Rekekeningnummerzoek = Console.ReadLine();
+                    Console.WriteLine($"rekeningnummer {Rekekeningnummerzoek} is niet te vinden");
+                }
+            }
             
 
 
