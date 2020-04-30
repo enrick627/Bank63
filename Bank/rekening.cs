@@ -8,13 +8,74 @@ namespace Bank
 {
     class rekening
     {
-        public string rekeningnummer { get; set;}
-        public decimal saldo { get; set;}
-        public decimal kredietlimiet { get; set;}
-        public string houder { get; set; }
-        public decimal stortBedrag { get; set; }
-        public decimal afhaalBedrag { get; set; }
+        /// <summary>
+        /// Het rekeningnummer in IBAN-formaat.
+        /// </summary>
+        public string Rekeningnummer{ get; set; }
 
+        /// <summary>
+        /// Het bedrag dat op de rekening staat.
+        /// </summary>
+        public decimal Saldo{ get; set; }
 
+        /// <summary>
+        /// Het bedrag dat je onder nul mag gaan (€ 100 krediet wordt als +100 ingesteld).
+        /// </summary>
+        public decimal Kredietlimiet{ get; set; }
+
+        /// <summary>
+        /// De naam van de eigenaar van de rekening.
+        /// </summary>
+        public string Houder{ get; set; }
+
+        /// <summary>
+        /// Een bedrag storten op de rekening.
+        /// </summary>
+        /// <param name="bedrag">Het bedrag dat op de rekening gestort wordt.</param>
+        /// <returns>Het nieuwe saldo van de rekening.</returns>
+        public decimal Storten(decimal bedrag)
+        {
+            // gestorte bedrag bij saldo tellen
+            Saldo += bedrag;
+            // nieuwe saldo teruggeven
+            return Saldo;
+        }
+
+        /// <summary>
+        /// Een bedrag van de rekening proberen afhalen.
+        /// </summary>
+        /// <param name="bedrag">Het bedrag dat we van de rekening proberen af te halen.</param>
+        /// <returns>true als afhalen gelukt is; false indien niet.</returns>
+        public bool Afhalen(decimal bedrag)
+        {
+            bool isGelukt = false;
+            // Geld afhalen mogelijk ALS saldo + kredietlimiet >= bedrag
+            if (Saldo + Kredietlimiet >= bedrag)
+            {
+                // geld afhalen => saldo aanpassen
+                Saldo -= bedrag;
+                // geld afhalen is gelukt
+                isGelukt = true;
+            }
+            return isGelukt;
+        }
+        /// <summary>
+        /// Een bedrag van de rekening proberen afhalen.
+        /// </summary>
+        /// <param name="bedrag">Het bedrag dat we van de rekening proberen af te halen.</param>
+        /// <returns>true als afhalen gelukt is; false indien niet.</returns>
+        public bool overschrijven(decimal bedrag)
+        {
+            bool Isgelukt = false;
+            decimal BedragNaarAnderPers = 0;
+            if (Saldo + Kredietlimiet >= bedrag)
+            {
+                Saldo -= bedrag;
+                bedrag += BedragNaarAnderPers;
+                Isgelukt = true;
+            }
+            return Isgelukt;
+        }
     }
+
 }
