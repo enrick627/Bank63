@@ -75,7 +75,7 @@ namespace Bank
             ClientRek.Saldo = 500;
             Spaarrekening SprRekening = new Spaarrekening();
             SprRekening.basisrente = 2;
-            SprRekening.d = 5;
+            SprRekening.getrouwheidsrente = 5;
             Console.WriteLine($"basisrente: {SprRekening.basisrente}%");
             Console.WriteLine($"getrouwheid: {SprRekening.getrouwheidsrente}%");
             Console.WriteLine($"rekeningnummer: {ClientRek.Rekeningnummer}");

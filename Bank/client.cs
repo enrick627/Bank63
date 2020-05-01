@@ -82,6 +82,19 @@ namespace Bank
         }
 
 
+        /// <summary>
+        /// bedrag op een bepaalde rekening plaatsen
+        /// </summary>
+        /// <param name="bedrag">het bedrag dat gaat worden gestort op de rekening</param>
+        /// <returns>of de storting succesvol is gebeurtd</returns>
+        public decimal StortingUitvoeren(decimal bedrag)
+        {
+            
+            rekening Stort = new rekening();
+            Stort.Saldo += bedrag;
+            //dit geef terug of hij is voltooid
+            return Stort.Saldo;
+        }
 
         /// <summary>
         /// bedraga van een bepaalde rekening halen
@@ -91,7 +104,7 @@ namespace Bank
         public bool afhalingUitvoeren(decimal bedrag = 0)
         {
             bool isGelukt = false;
-            zichtrekening Afhaal = new zichtrekening();
+            rekening Afhaal = new rekening();
             // Geld afhalen mogelijk ALS saldo + kredietlimiet >= bedrag
             if (Afhaal.Saldo >= bedrag)
             {
@@ -106,18 +119,6 @@ namespace Bank
         }
 
         /// <summary>
-        /// bedrag op een bepaalde rekening plaatsen
-        /// </summary>
-        /// <param name="bedrag">het bedrag dat gaat worden gestort op de rekening</param>
-        /// <returns>of de storting succesvol is gebeurtd</returns>
-        public decimal StortingUitvoeren(decimal bedrag)
-        {
-            zichtrekening Stort = new zichtrekening();
-            Stort.Saldo += bedrag ;
-            Console.WriteLine("het is succesvol op uw rekening gestort");
-            return Stort.Saldo;
-        }
-        /// <summary>
         /// bedrag van een bepaalde rekening naar een bepaald rekeningnummer
         /// </summary>
         /// <param name="bedrag">het bedrag dat van een bepaalde rekening naar een bepaalde rekeningummer moet</param>
@@ -127,13 +128,13 @@ namespace Bank
             
             bool IsGelukt = false;
             decimal BedragNaarAnderPers = 0;
-            zichtrekening Overschrijven = new zichtrekening();
+            rekening Overschrijven = new rekening();
             //je kan allen geld afhalen als er genoeg geld opstaat
             if (Overschrijven.Saldo > bedrag)
             {
                 Overschrijven.Saldo -= bedrag;
                 BedragNaarAnderPers += bedrag;
-
+                //dit geeft weer of hij succesvol is.
                 IsGelukt = true;
 
             }
