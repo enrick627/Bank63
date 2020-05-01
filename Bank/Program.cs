@@ -70,14 +70,14 @@ namespace Bank
             clientnr1.Familienaam = "jeanne";
             clientnr1.Adres = "willebroek";
 
-            rekening ClientRek = new rekening();
+            zichtrekening ClientRek = new zichtrekening();
             ClientRek.Rekeningnummer = "BE55 55 66 77 88 99";
             ClientRek.Saldo = 500;
             Spaarrekening SprRekening = new Spaarrekening();
             SprRekening.basisrente = 2;
             SprRekening.d = 5;
             Console.WriteLine($"basisrente: {SprRekening.basisrente}%");
-            Console.WriteLine($"getrouwheid: {SprRekening.d}%");
+            Console.WriteLine($"getrouwheid: {SprRekening.getrouwheidsrente}%");
             Console.WriteLine($"rekeningnummer: {ClientRek.Rekeningnummer}");
             Console.ReadLine();
         }

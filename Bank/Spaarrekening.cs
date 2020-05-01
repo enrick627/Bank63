@@ -39,7 +39,7 @@ namespace Bank
         /// <summary>
         /// de getrouwheidsrente
         /// </summary>
-        public float d { get; set; }
+        public float getrouwheidsrente { get; set; }
 
 
         /// <summary>

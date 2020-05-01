@@ -46,7 +46,7 @@
     <Compile Include="client.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="rekening.cs" />
+    <Compile Include="zichtrekening.cs" />
     <Compile Include="Spaarrekening.cs" />
   </ItemGroup>
   <ItemGroup>

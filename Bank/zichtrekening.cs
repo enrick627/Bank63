@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bank
 {
-    class rekening
+    class zichtrekening
     {
         /// <summary>
         /// Het rekeningnummer in IBAN-formaat.

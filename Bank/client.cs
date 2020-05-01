@@ -9,11 +9,11 @@ namespace Bank
     class client
     {
 
-        private List<rekening> rekeningen;
+        private List<zichtrekening> rekeningen;
 
         public client()
         {
-            rekeningen = new List<rekening>();
+            rekeningen = new List<zichtrekening>();
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace Bank
         /// <summary>
         /// De rekeningen van deze cliënt
         /// </summary>
-        public List<rekening> Rekeningen
+        public List<zichtrekening> Rekeningen
         {
             get { return rekeningen; }
             set { rekeningen = value; }
@@ -42,7 +42,7 @@ namespace Bank
         /// Open een rekening voor deze cliënt.
         /// </summary>
         /// <param name="rekening">De rekening voor deze cliënt.</param>
-        public void RekeningOpenen(rekening rekening)
+        public void RekeningOpenen(zichtrekening rekening)
         {
             // Deze cliënt als houder van de rekening instellen
             rekening.Houder = $"{Voornaam} {Familienaam}";
@@ -59,7 +59,7 @@ namespace Bank
         {
             bool isGelukt;
             // zoek de te sluiten rekening
-            rekening teSluitenRekening = RekeningOpzoeken(rekeningnummer);
+            zichtrekening teSluitenRekening = RekeningOpzoeken(rekeningnummer);
             // Verwijder de gezochte rekening uit de lijst
             isGelukt = rekeningen.Remove(teSluitenRekening);
             return isGelukt;
@@ -70,10 +70,10 @@ namespace Bank
         /// </summary>
         /// <param name="rekeningnummer">Het rekeningnummer van de te zoeken rekening.</param>
         /// <returns>De rekening indien gevonden; null indien niet gevonden.</returns>
-        public rekening RekeningOpzoeken(string rekeningnummer)
+        public zichtrekening RekeningOpzoeken(string rekeningnummer)
         {
-            rekening gezochteRekening = null;
-            foreach (rekening rekening in rekeningen)
+            zichtrekening gezochteRekening = null;
+            foreach (zichtrekening rekening in rekeningen)
             {
                 if (rekening.Rekeningnummer == rekeningnummer)
                     gezochteRekening = rekening;
@@ -88,14 +88,10 @@ namespace Bank
         /// </summary>
         /// <param name="bedrag">het bedrag dat van de rekening wordt gehaalt</param>
         /// <returns>dat waneer er niet genoeg geld op de rekening staat. het niet gaat</returns>
-        public bool afhalingUitvoeren(decimal bedrag)
+        public bool afhalingUitvoeren(decimal bedrag = 0)
         {
             bool isGelukt = false;
-            rekening Afhaal = new rekening();
-            Console.WriteLine("geef uw rekeningnummer");
-            Afhaal.Rekeningnummer = Console.ReadLine();
-            Console.WriteLine("geef het saldo dat op de rekening staat");
-            Afhaal.Saldo = decimal.Parse(Console.ReadLine());
+            zichtrekening Afhaal = new zichtrekening();
             // Geld afhalen mogelijk ALS saldo + kredietlimiet >= bedrag
             if (Afhaal.Saldo >= bedrag)
             {
@@ -103,30 +99,48 @@ namespace Bank
                 Afhaal.Saldo -= bedrag;
                 // geld afhalen is gelukt
                 isGelukt = true;
-                Console.WriteLine("het geld is succesvol van uw rekening gehaald");
-            }
-            else
-            {
-                Console.WriteLine("u heeft niet genoeg geld op uw rekening");
+                
             }
             return isGelukt;
 
         }
 
         /// <summary>
-        /// bedrag van een bepaalde rekening naar een bepaald rekeningnummer
-        /// </summary>
-        public decimal OverschrijvingUitvoeren()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>
         /// bedrag op een bepaalde rekening plaatsen
         /// </summary>
-        public decimal StortingUitvoeren()
+        /// <param name="bedrag">het bedrag dat gaat worden gestort op de rekening</param>
+        /// <returns>of de storting succesvol is gebeurtd</returns>
+        public decimal StortingUitvoeren(decimal bedrag)
         {
-            throw new System.NotImplementedException();
+            zichtrekening Stort = new zichtrekening();
+            Stort.Saldo += bedrag ;
+            Console.WriteLine("het is succesvol op uw rekening gestort");
+            return Stort.Saldo;
         }
+        /// <summary>
+        /// bedrag van een bepaalde rekening naar een bepaald rekeningnummer
+        /// </summary>
+        /// <param name="bedrag">het bedrag dat van een bepaalde rekening naar een bepaalde rekeningummer moet</param>
+        /// <returns>Of de overschrijving succesvol is gebeurt</returns>
+        public bool OverschrijvingUitvoeren(decimal bedrag)
+        {
+            
+            bool IsGelukt = false;
+            decimal BedragNaarAnderPers = 0;
+            zichtrekening Overschrijven = new zichtrekening();
+            //je kan allen geld afhalen als er genoeg geld opstaat
+            if (Overschrijven.Saldo > bedrag)
+            {
+                Overschrijven.Saldo -= bedrag;
+                BedragNaarAnderPers += bedrag;
+
+                IsGelukt = true;
+
+            }
+            return IsGelukt;
+
+        }
+
+        
     }
 }
