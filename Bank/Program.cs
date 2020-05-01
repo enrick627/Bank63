@@ -63,18 +63,23 @@ namespace Bank
     {
         static void Main(string[] args)
         {
-            client clientnr1 = null;
+            client clientnr1 = new client();
+
 
             clientnr1.Voornaam = "marie";
             clientnr1.Familienaam = "jeanne";
             clientnr1.Adres = "willebroek";
 
-            rekening ClientRek = null;
+            rekening ClientRek = new rekening();
             ClientRek.Rekeningnummer = "BE55 55 66 77 88 99";
             ClientRek.Saldo = 500;
-
-           
-
+            Spaarrekening SprRekening = new Spaarrekening();
+            SprRekening.basisrente = 2;
+            SprRekening.d = 5;
+            Console.WriteLine($"basisrente: {SprRekening.basisrente}%");
+            Console.WriteLine($"getrouwheid: {SprRekening.d}%");
+            Console.WriteLine($"rekeningnummer: {ClientRek.Rekeningnummer}");
+            Console.ReadLine();
         }
     }
 }

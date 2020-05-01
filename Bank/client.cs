@@ -81,26 +81,32 @@ namespace Bank
             return gezochteRekening;
         }
 
-        /// <summary>
-        /// bedrag op een bepaalde rekening zetten
-        /// </summary>
-        public decimal stortingUitvoeren()
-        {
-            throw new System.NotImplementedException();
-        }
+
 
         /// <summary>
         /// bedraga van een bepaalde rekening halen
         /// </summary>
-        public decimal afhalingUitvoeren()
+        /// <param name="bedrag">het bedrag dat van de rekening wordt gehaalt</param>
+        
+        /// <returns>dat waneer er niet genoeg geld op de rekening staat. het niet gaat</returns>
+        public decimal afhalingUitvoeren(decimal bedrag)
         {
-            throw new System.NotImplementedException();
+            
+            
         }
 
         /// <summary>
         /// bedrag van een bepaalde rekening naar een bepaald rekeningnummer
         /// </summary>
         public decimal OverschrijvingUitvoeren()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// bedrag op een bepaalde rekening plaatsen
+        /// </summary>
+        public decimal StortingUitvoeren()
         {
             throw new System.NotImplementedException();
         }

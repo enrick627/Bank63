@@ -22,13 +22,13 @@ namespace Bank
         /// Het bedrag dat op de rekening staat
         /// </summary>
         public decimal Saldo { get; set; }
-        
+
 
         /// <summary>
         /// De naam van de eigenaar van de rekening
         /// </summary>
         public string houder { get; set; }
-        
+
 
         /// <summary>
         /// de basis rentevoet in percentage
@@ -39,7 +39,7 @@ namespace Bank
         /// <summary>
         /// de getrouwheidsrente
         /// </summary>
-        public float getrouwheid { get; set; }
+        public float d { get; set; }
 
 
         /// <summary>
@@ -55,6 +55,22 @@ namespace Bank
             return Saldo;
         }
 
-       
+        /// <summary>
+        /// het bedrag dat wordt overgeschreven
+        /// </summary>
+        /// <param name="bedrag">het bedrag dat wordt overgeschreven</param>
+        /// <returns>het bedrag dat nu nog op de rekenin staat</returns>
+        public bool overschrijven(decimal bedrag)
+        {
+            bool Isgelukt = false;
+            decimal BedragNaarAnderPers = 0;
+            if (Saldo >= bedrag)
+            {
+                Saldo -= bedrag;
+                bedrag += BedragNaarAnderPers;
+                Isgelukt = true;
+            }
+            return Isgelukt;
+        }
     }
 }

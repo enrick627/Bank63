@@ -21,16 +21,16 @@
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
   <Class Name="Bank.Spaarrekening">
-    <Position X="0.5" Y="2.25" Width="1.5" />
+    <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAQAEAAAgAAAAAAAAAAAIQIAAAAAA=</HashCode>
       <FileName>Spaarrekening.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="System.Object" Collapsed="true">
-    <Position X="0.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
