@@ -32,5 +32,12 @@ namespace Bank
         /// </summary>
         public string adress { get; set; }
 
+        class adres
+        {
+            public string straat { get; set; }
+            public string huisnummer { get; set; }
+            public string postcode { get; set; }
+            public string woonplaats { get; set; }
+        }
     }
 }

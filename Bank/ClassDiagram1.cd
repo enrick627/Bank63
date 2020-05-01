@@ -34,8 +34,15 @@
   </Class>
   <Class Name="Bank.rekening">
     <Position X="11" Y="1.5" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Bank.rekening.adres" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>rekening.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAABAAAQAAAAAAAAAAAAAABAAAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAABAAAQAAAAAAAAAAAAAABAIAAIAAAAAAAA=</HashCode>
       <FileName>rekening.cs</FileName>
     </TypeIdentifier>
   </Class>
