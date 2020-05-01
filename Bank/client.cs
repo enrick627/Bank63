@@ -87,12 +87,30 @@ namespace Bank
         /// bedraga van een bepaalde rekening halen
         /// </summary>
         /// <param name="bedrag">het bedrag dat van de rekening wordt gehaalt</param>
-        
         /// <returns>dat waneer er niet genoeg geld op de rekening staat. het niet gaat</returns>
-        public decimal afhalingUitvoeren(decimal bedrag)
+        public bool afhalingUitvoeren(decimal bedrag)
         {
-            
-            
+            bool isGelukt = false;
+            rekening Afhaal = new rekening();
+            Console.WriteLine("geef uw rekeningnummer");
+            Afhaal.Rekeningnummer = Console.ReadLine();
+            Console.WriteLine("geef het saldo dat op de rekening staat");
+            Afhaal.Saldo = decimal.Parse(Console.ReadLine());
+            // Geld afhalen mogelijk ALS saldo + kredietlimiet >= bedrag
+            if (Afhaal.Saldo >= bedrag)
+            {
+                // geld afhalen => saldo aanpassen
+                Afhaal.Saldo -= bedrag;
+                // geld afhalen is gelukt
+                isGelukt = true;
+                Console.WriteLine("het geld is succesvol van uw rekening gehaald");
+            }
+            else
+            {
+                Console.WriteLine("u heeft niet genoeg geld op uw rekening");
+            }
+            return isGelukt;
+
         }
 
         /// <summary>
